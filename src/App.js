@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Morse from 'morse';
+import execSeries from 'exec-series';
 
 
 class App extends Component {
@@ -28,25 +29,39 @@ class App extends Component {
   }
 
   parse(code) {
+
+    execSeries([
+
+      this.dot(),
+      this.dash()
+
+    ])
+
+
+  }
+
+  dot() {
     let off = {"on":false}
     let on = {"on":true}
 
-    // let dot(){
-    //   this.flicker(on)
-    //   thi
-    // }
-
+    this.flicker(on)
 
     setTimeout(function() {
       this.flicker(off)
     }
-    .bind(this), 500);
+    .bind(this), 1500);
+  }
+
+  dash() {
+    let off = {"on":false}
+    let on = {"on":true}
+
+    this.flicker(on)
+
     setTimeout(function() {
-      this.flicker(on)
+      this.flicker(off)
     }
-    .bind(this), 2000);
-
-
+    .bind(this), 4500);
   }
 
   flicker(data) {
