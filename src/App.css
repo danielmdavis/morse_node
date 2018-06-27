@@ -39,7 +39,7 @@ body {
 .form {
   margin: auto;
   text-align: center;
-  padding-top: 15%;
+  padding-top: 288px;
 }
 
 input[type=text] {
@@ -52,6 +52,13 @@ input[type=text] {
     box-sizing: border-box;
     border-radius: 0px;
     box-shadow: 0px;
+    background-color: #262626;
+    color: white !important;
+}
+
+input[type=text]:focus {
+    background-color: white;
+    color: black;
 }
 
 input[type=submit] {

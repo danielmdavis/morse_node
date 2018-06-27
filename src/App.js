@@ -108,7 +108,7 @@ class App extends Component {
             value={this.inputText}
             type='text'
             onChange={this.handleText}
-            placeholder="placeholder"
+            placeholder="Enter Message"
             /> <br/>
           <input type="submit" value="Submit" className="submit" />
         </form>
