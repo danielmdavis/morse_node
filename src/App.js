@@ -23,9 +23,14 @@ class App extends Component {
 
   handleFlicker(event) {
     event.preventDefault()
-    // this.setState({ event.target.value: code })
-    // this.forceUpdate();
-    this.setState({ codeText: Morse.encode(this.state.inputText) })
+
+    let morse = Morse.encode(this.state.inputText)
+    console.log(morse);
+    while (morse.indexOf('.......') !== -1) {
+      morse = morse.replace('.......', '/')
+      console.log(morse);
+    }
+    this.setState({ codeText: morse })
     this.parse(this.state.codeText)
   }
 
@@ -120,7 +125,7 @@ class App extends Component {
             value={this.inputText}
             type='text'
             onChange={this.handleText}
-            placeholder="Enter Message"
+            placeholder="Enter Message to Broadcast"
             /> <br/>
           <input type="submit" value="Submit" className="submit" />
         </form>
