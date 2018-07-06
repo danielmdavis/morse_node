@@ -3,6 +3,7 @@ import './App.css';
 import Morse from 'morse';
 import execSeries from 'exec-series';
 
+const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
 
 class App extends Component {
   constructor(props){
@@ -28,44 +29,55 @@ class App extends Component {
     this.parse(this.state.codeText)
   }
 
-  parse(code) {
+  async parse(code) {
+    await this.dot();
+    await this.dot();
+    await this.dot();
+    await this.letterSpace();
+    await this.dash();
+    await this.dash();
+    await this.dash();
+    await this.letterSpace();
+    await this.dot();
+    await this.dot();
+    await this.dot();
 
-    execSeries([
-
-      this.dot(),
-      this.dash()
-
-    ])
-
-
+    /* equivalent to
+      this.dot().then(() => this.dash())
+    */
   }
 
-  dot() {
-    let off = {"on":false}
-    let on = {"on":true}
 
+
+  async dot() {
+    let off = {"on": false}
+    let on = {"on": true}
     this.flicker(on)
-
-    setTimeout(function() {
-      this.flicker(off)
-    }
-    .bind(this), 1500);
+    await delay(800)
+    this.flicker(off)
+    await delay(1000)
   }
 
-  dash() {
-    let off = {"on":false}
-    let on = {"on":true}
-
+  async dash() {
+    let off = {"on": false}
+    let on = {"on": true}
     this.flicker(on)
-
-    setTimeout(function() {
-      this.flicker(off)
-    }
-    .bind(this), 4500);
+    await delay(2400);
+    this.flicker(off)
+    await delay(1000)
   }
+
+  async letterSpace() {
+    await delay(1400)
+  }
+
+  async wordSpace() {
+    await delay(5600)
+  }
+
 
   flicker(data) {
-    fetch(`http://10.0.1.196/api/xRLSMy7MSQjwMIBz1v0OJvczvu9L2pSwB144tEUd/groups/1/action`, {
+    return fetch(`http://10.0.1.196/api/xRLSMy7MSQjwMIBz1v0OJvczvu9L2pSwB144tEUd/groups/1/action`, {
       credentials: 'same-origin',
       method: 'PUT',
       body: JSON.stringify(data),
