@@ -35,6 +35,7 @@ class App extends Component {
   }
 
   async parse(code) {
+    let stack = this.state.codeText
     await this.dot();
     await this.dot();
     await this.dot();
@@ -47,37 +48,32 @@ class App extends Component {
     await this.dot();
     await this.dot();
 
-    /* equivalent to
-      this.dot().then(() => this.dash())
-    */
   }
-
-
 
   async dot() {
     let off = {"on": false}
     let on = {"on": true}
     this.flicker(on)
-    await delay(800)
+    await delay(700)
     this.flicker(off)
-    await delay(1000)
+    await delay(900)
   }
 
   async dash() {
     let off = {"on": false}
     let on = {"on": true}
     this.flicker(on)
-    await delay(2400);
+    await delay(2100);
     this.flicker(off)
-    await delay(1000)
+    await delay(900)
   }
 
   async letterSpace() {
-    await delay(1400)
+    await delay(1200)
   }
 
   async wordSpace() {
-    await delay(5600)
+    await delay(4900)
   }
 
 
