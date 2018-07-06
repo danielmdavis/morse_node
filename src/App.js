@@ -29,7 +29,7 @@ class App extends Component {
     }
     let queue = morse.split('')
     this.setState({ codeText: queue })
-    this.setState({ inputText: morse })
+    document.getElementById('form').value = morse
     this.parse(queue)
   }
 
@@ -113,7 +113,7 @@ class App extends Component {
 
         <form onSubmit={this.handleFlicker} className="form">
           <input
-            name={this.valueType}
+            id='form'
             value={this.inputText}
             type='text'
             onChange={this.handleText}
