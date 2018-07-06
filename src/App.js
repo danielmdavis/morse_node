@@ -10,7 +10,6 @@ class App extends Component {
     this.state = {
       inputText: '',
       codeText: ''
-
     }
     this.handleText = this.handleText.bind(this);
     this.handleFlicker = this.handleFlicker.bind(this);
@@ -23,12 +22,14 @@ class App extends Component {
   handleFlicker(event) {
     event.preventDefault()
 
+
     let morse = Morse.encode(this.state.inputText)
     while (morse.indexOf('.......') !== -1) {
       morse = morse.replace('.......', '/')
     }
     let queue = morse.split('')
     this.setState({ codeText: queue })
+    this.setState({ inputText: morse })
     this.parse(queue)
   }
 
@@ -56,7 +57,6 @@ class App extends Component {
     this.flicker(off)
     await delay(900)
   }
-
   async dash() {
     let off = {"on": false}
     let on = {"on": true}
@@ -65,13 +65,11 @@ class App extends Component {
     this.flicker(off)
     await delay(900)
   }
-
   async letterSpace() {
     await delay(1200)
   }
-
   async wordSpace() {
-    await delay(4900)
+    await delay(2800)
   }
 
 
@@ -114,8 +112,8 @@ class App extends Component {
     return (
 
         <form onSubmit={this.handleFlicker} className="form">
-
           <input
+            name={this.valueType}
             value={this.inputText}
             type='text'
             onChange={this.handleText}
