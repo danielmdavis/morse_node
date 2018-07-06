@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
 import Morse from 'morse';
-import execSeries from 'exec-series';
 
 const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
 
@@ -25,28 +24,27 @@ class App extends Component {
     event.preventDefault()
 
     let morse = Morse.encode(this.state.inputText)
-    console.log(morse);
     while (morse.indexOf('.......') !== -1) {
       morse = morse.replace('.......', '/')
-      console.log(morse);
     }
-    this.setState({ codeText: morse })
-    this.parse(this.state.codeText)
+    let queue = morse.split('')
+    this.setState({ codeText: queue })
+    this.parse(queue)
   }
 
   async parse(code) {
-    let stack = this.state.codeText
-    await this.dot();
-    await this.dot();
-    await this.dot();
-    await this.letterSpace();
-    await this.dash();
-    await this.dash();
-    await this.dash();
-    await this.letterSpace();
-    await this.dot();
-    await this.dot();
-    await this.dot();
+
+    let queue = code
+    let current
+    console.log(queue);
+
+    while (queue.length > 0) {
+      current = queue.shift()
+      if (current === '.'){await this.dot()}
+      if (current === '-'){await this.dash()}
+      if (current === ' '){await this.letterSpace()}
+      if (current === '/'){await this.wordSpace()}
+    }
 
   }
 
