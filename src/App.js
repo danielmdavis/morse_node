@@ -50,26 +50,26 @@ class App extends Component {
   }
 
   async dot() {
-    let off = {"on": false}
-    let on = {"on": true}
+    let off = {"transitiontime":0, "bri":255, "on": false}
+    let on = {"transitiontime":0, "bri":255, "on": true}
     this.flicker(on)
-    await delay(700)
+    await delay(400)
     this.flicker(off)
-    await delay(900)
+    await delay(400)
   }
   async dash() {
-    let off = {"on": false}
-    let on = {"on": true}
+    let off = {"transitiontime":0, "bri":255, "on": false}
+    let on = {"transitiontime":0, "bri":255, "on": true}
     this.flicker(on)
-    await delay(2100);
+    await delay(1200);
     this.flicker(off)
-    await delay(900)
+    await delay(400)
   }
   async letterSpace() {
-    await delay(1200)
+    await delay(800)
   }
   async wordSpace() {
-    await delay(2800)
+    await delay(1600)
   }
 
 
@@ -114,6 +114,7 @@ class App extends Component {
         <form onSubmit={this.handleFlicker} className="form">
           <input
             id='form'
+            autocomplete='off'
             value={this.inputText}
             type='text'
             onChange={this.handleText}
