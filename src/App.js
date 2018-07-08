@@ -53,23 +53,23 @@ class App extends Component {
     let off = {"transitiontime":0, "bri":255, "on": false}
     let on = {"transitiontime":0, "bri":255, "on": true}
     this.flicker(on)
-    await delay(400)
+    await delay(500)
     this.flicker(off)
-    await delay(400)
+    await delay(500)
   }
   async dash() {
     let off = {"transitiontime":0, "bri":255, "on": false}
     let on = {"transitiontime":0, "bri":255, "on": true}
     this.flicker(on)
-    await delay(1200);
+    await delay(1500);
     this.flicker(off)
-    await delay(400)
+    await delay(500)
   }
   async letterSpace() {
-    await delay(800)
+    await delay(100)
   }
   async wordSpace() {
-    await delay(1600)
+    await delay(2000)
   }
 
 
@@ -110,8 +110,13 @@ class App extends Component {
 
 
     return (
-
+      <div>
         <form onSubmit={this.handleFlicker} className="form">
+          <select>
+            <option value='slow'>Slow</option>
+            <option value='med'>Medium</option>
+            <option value='fast'>Fast</option>
+          </select> &nbsp;
           <input
             id='form'
             autocomplete='off'
@@ -119,9 +124,10 @@ class App extends Component {
             type='text'
             onChange={this.handleText}
             placeholder="Enter Message to Broadcast"
-            /> <br/>
-          <input type="submit" value="Submit" className="submit" />
+            /> &nbsp;
+          <input id="submit" type="submit" value="Submit" className="submit" />
         </form>
+      </div>
 
     )
   }

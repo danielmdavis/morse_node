@@ -54,19 +54,25 @@ input[type=text] {
     box-shadow: 0px;
     background-color: #262626;
     color: #D9EFA3 !important;
+    outline: none;
 }
 
-input[type=submit] {
-  width: 10%;
+input[type=submit i] {
+  width: 80px;
+
   margin: auto;
   box-sizing: border-box;
   font-size: 20px !important;
-  height: 80px !important;
+  height: 50px !important;
   border-radius: 0px !important;
   -webkit-border-radius: 0px !important;
 }
 
-.submit {
+.select {
+  width: 80px;
+}
+
+#submit {
   font-size: 20px !important;
   height: 80px !important;
   border-radius: 0px !important;
